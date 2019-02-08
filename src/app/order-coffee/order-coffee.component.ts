@@ -42,9 +42,7 @@ export class OrderCoffeeComponent implements OnInit {
   }
 
   ueberschreiben(){
-    this.selectedCoffee.firstname = this.coffeecopy.firstname;
-    this.selectedCoffee.lastname = this.coffeecopy.lastname;
-    this.selectedCoffee.email = this.coffeecopy.email;
+    this.selectedCoffee.date = this.coffeecopy.date;
     this.selectedCoffee.amount = this.coffeecopy.amount;
   }
 

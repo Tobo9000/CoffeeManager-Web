@@ -1,7 +1,6 @@
 export interface Order {
-    firstname: string,
-    lastname: string,
+    
     amount: number,
-    email: string,
+    date: Date,
     _id: string
 }

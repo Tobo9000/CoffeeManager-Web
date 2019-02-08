@@ -1,55 +1,35 @@
 
 <div class="container mt-5">
     <h1>Kaffee bestellen</h1><br>
+
+    <!-- Bestellformular -->
+
     <form #coffeeForm="ngForm" (ngSubmit)="submit(coffeeForm)">
 
-            <!-- Bestellformular: Name & Vorname -->
-                    <div class="row">
-                      <div class="col">
-                        <input type="text" class="form-control" name="lastname" ngModel #lastname="ngModel" pattern="[A-Za-zä-üÄ-Ü-]{1,32}" required minlength="2" maxlength="30" placeholder="Name (Pflichtfeld)">
-                      </div>
-                      
-                      <div class="col">
-                        <input type="text" class="form-control" name="firstname" ngModel #firstname="ngModel" pattern="[A-Za-zä-üÄ-Ü-]{1,50}" required minlength="2" maxlength="50" placeholder="Vorname (Pflichtfeld)">
-                      </div>
-                    </div>
-                    
-                    <!-- Alerts -->
-                    <div class="row">
-                      <div class="col">
-                         <div [hidden]="lastname.valid || lastname.pristine" class="alert alert-danger">Ungültige Eingabe</div>
-                      </div>
+       
+            <div class="row">
+              <div class="col">
+                <input type="date" class="form-control" name="date" ngModel #date="ngModel" placeholder="Datum (Pflichtfeld)" required min="2019-02-01" max="2019-03-01"> 
+              </div>
+              <div class="col">
+                <input type="number" class="form-control" name="amount" ngModel #amount="ngModel" pattern="[0-9]{1,3}" required placeholder="Anzahl (Pflichtfeld)">
+              </div>
+                <div class="w-100"></div>
 
-                      <div class="col">
-                         <div [hidden]="firstname.valid || firstname.pristine" class="alert alert-danger">Ungültige Eingabe</div>
-                      </div>   
-                    </div> 
-                   
-                    <br>
-
-              <!-- Anzahl -->
-        <div class="form-group">
-                
-          <input type="number" class="form-control" name="amount" ngModel #amount="ngModel" pattern="[0-9]{1,3}" required placeholder="Anzahl (Pflichtfeld)">
-        
-          <div class="row">
-            <div class="col">
-              <div [hidden]="amount.valid || amount.pristine" class="alert alert-danger">Ungültige Eingabe</div>
+              <div class="col"></div>
+              <div class="col"><div [hidden]="amount.valid || amount.pristine" class="alert alert-danger">Ungültige Eingabe</div>
             </div>
-          </div>
-        </div>
-
-        <!-- E-Mail -->
-          <input type="email" class="form-control" id="exampleInputEmail1" value=null name="email" ngModel #email="ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" aria-describedby="emailHelp"
-           placeholder="E-Mail (optional)"><br>
-
+            </div>
+     
+            <br>
         
            <button type="submit" [disabled]="!coffeeForm.valid" class="btn btn-success btn-large btn-block">Bestätigen</button>
-  </form>
+
+    </form>
 
   <!-- Bestellformular Ende -->
 
-    <br><br><br>
+    
 
     <!-- Bestellungsliste -->
      <h1 *ngIf="liste.length !=0">Kaffeebestellungen</h1>

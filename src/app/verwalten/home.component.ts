@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit {
     console.log("Suche: "+ this.searchString);
     for(var s=0; s< this.orders.length; s++){
       
-      if(this.searchString === this.suchListe[s].firstname || this.searchString === this.suchListe[s].lastname || this.searchString === this.suchListe[s].email){
+      if(this.searchString === this.suchListe[s].amount.toString() || this.searchString === this.suchListe[s].date.toDateString()){
         this.filteredList.push(this.suchListe[s]);
         console.log("Ausgabe:")
         console.log(this.suchListe[s]);
@@ -49,9 +49,7 @@ export class HomeComponent implements OnInit {
   }
   
   ueberschreiben(){
-    this.selectedCoffee2.firstname = this.coffeecopy2.firstname;
-    this.selectedCoffee2.lastname = this.coffeecopy2.lastname;      //funktioniert noch nicht
-    this.selectedCoffee2.email = this.coffeecopy2.email;
+    this.selectedCoffee2.date = this.coffeecopy2.date;
     this.selectedCoffee2.amount = this.coffeecopy2.amount;
   }
   
