@@ -44,6 +44,7 @@ export class OrderCoffeeComponent implements OnInit {
   ueberschreiben(){
     this.selectedCoffee.date = this.coffeecopy.date;
     this.selectedCoffee.amount = this.coffeecopy.amount;
+    this.selectedCoffee.comment = this.coffeecopy.comment;
   }
 
   loeschen(l: Order){

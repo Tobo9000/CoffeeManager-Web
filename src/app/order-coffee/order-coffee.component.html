@@ -16,9 +16,19 @@
               </div>
                 <div class="w-100"></div>
 
-              <div class="col"></div>
-              <div class="col"><div [hidden]="amount.valid || amount.pristine" class="alert alert-danger">Ungültige Eingabe</div>
-            </div>
+                <br>
+
+                <div class="col">
+
+                </div>
+                <div class="col">
+                  <div [hidden]="amount.valid || amount.pristine" class="alert alert-danger">Ungültige Eingabe</div>
+                </div>
+
+                <div class="col-12">
+                  <textarea class="form-control" name="comment" ngModel #comment="ngModel" rows="3" placeholder="Kommentarfeld"></textarea>
+                </div>
+                
             </div>
      
             <br>
@@ -35,8 +45,8 @@
      <h1 *ngIf="liste.length !=0">Kaffeebestellungen</h1>
           <ul class="list-group">
              <li class="list-group-item" *ngFor="let l of liste">
-                <span>{{l.firstname}} {{l.lastname}}, Anzahl: {{l.amount}} </span>
-                <span *ngIf="l.email!==null && l.email!==''">(E-Mail: {{l.email}})</span>
+                <span>{{l.date}}, Anzahl: {{l.amount}} </span>
+                <span *ngIf="l.comment!==null && l.comment!==''">(Kommentar: {{l.comment}})</span>
                 
                 <!-- Buttons  -->
                 <div class="btn-group float-right" role="group" aria-label="Basic example">
@@ -75,20 +85,16 @@
                 <form  #changeForm="ngForm">
   
                   <div class="form-group">
-                      <label>Name:</label>
-                      <input type="text" class="form-control" name="lastname" [(ngModel)]="coffeecopy.lastname" pattern="[A-Za-zä-üÄ-Ü-]{1,32}" required minlength="2" maxlength="30">
-                  </div>
-                  <div class="form-group">
-                      <label>Vorname:</label>  
-                      <input type="text" class="form-control" name="firstname" [(ngModel)]="coffeecopy.firstname" pattern="[A-Za-zä-üÄ-Ü-]{1,50}" required minlength="2" maxlength="50">
+                      <label>Datum:</label>
+                      <input type="date" class="form-control" name="date" [(ngModel)]="coffeecopy.date" required min="2019-02-01" max="2019-03-01">
                   </div>
                   <div class="form-group">
                       <label>Anzahl:</label>
                       <input type="number" class="form-control" name="amount" [(ngModel)]="coffeecopy.amount" pattern="[0-9]{1,3}">
                   </div>
                   <div class="form-group">
-                    <label>E-Mail:</label>
-                    <input type="email" class="form-control" name="email" [(ngModel)]="coffeecopy.email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+                    <label>Kommentar:</label>
+                    <textarea type="comment" class="form-control" name="comment" [(ngModel)]="coffeecopy.comment"></textarea>
                   </div>
                   
                 </form>

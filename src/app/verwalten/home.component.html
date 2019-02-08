@@ -14,8 +14,8 @@
     <ul *ngIf="searchString===''">
       <div class="list-group">
       <li class="list-group-item" *ngFor="let o of orders">
-      <span>ID: {{o._id}} | {{o.lastname}}, {{o.firstname}} - Anzahl: {{o.amount}} </span>
-      <span *ngIf="o.email!==null && o.email!==''">(E-Mail: {{o.email}})</span>
+      <span>ID: {{o._id}} | {{o.date}}, Anzahl: {{o.amount}} </span>
+      <span *ngIf="o.comment!==null && o.comment!==''">(Kommentar: {{o.comment}})</span>
   
        <!-- Buttons  -->
       
@@ -34,8 +34,8 @@
     <ul *ngIf="searchString!==''">
         <div class="list-group">
         <li class="list-group-item" *ngFor="let f of filteredList">
-        <span>ID: {{f._id}} | {{f.lastname}}, {{f.firstname}} - Anzahl: {{f.amount}} </span>
-        <span *ngIf="f.email!==null && f.email!==''">(E-Mail: {{f.email}})</span>
+        <span>ID: {{f._id}} | {{f.date}}, Anzahl: {{f.amount}} </span>
+        <span *ngIf="f.comment!==null && f.comment!==''">(Kommentar: {{f.comment}})</span>
     
          <!-- Buttons  -->
         
@@ -72,22 +72,18 @@
 
               <form  #changeForm="ngForm">
 
-                <div class="form-group">
-                    <label>Name:</label>
-                    <input type="text" class="form-control" name="lastname" [(ngModel)]="coffeecopy2.lastname" pattern="[A-Za-zä-üÄ-Ü-]{1,32}" required minlength="2" maxlength="30">
-                </div>
-                <div class="form-group">
-                    <label>Vorname:</label>  
-                    <input type="text" class="form-control" name="firstname" [(ngModel)]="coffeecopy2.firstname" pattern="[A-Za-zä-üÄ-Ü-]{1,50}" required minlength="2" maxlength="50">
-                </div>
-                <div class="form-group">
-                    <label>Anzahl:</label>
-                    <input type="number" class="form-control" name="amount" [(ngModel)]="coffeecopy2.amount" pattern="[0-9]{1,3}">
-                </div>
-                <div class="form-group">
-                  <label>E-Mail:</label>
-                  <input type="email" class="form-control" name="email" [(ngModel)]="coffeecopy2.email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
-                </div>
+                  <div class="form-group">
+                      <label>Datum:</label>
+                      <input type="date" class="form-control" name="date" [(ngModel)]="coffeecopy2.date" required min="2019-02-01" max="2019-03-01">
+                  </div>
+                  <div class="form-group">
+                      <label>Anzahl:</label>
+                      <input type="number" class="form-control" name="amount" [(ngModel)]="coffeecopy2.amount" pattern="[0-9]{1,3}">
+                  </div>
+                  <div class="form-group">
+                    <label>Kommentar:</label>
+                    <textarea type="comment" class="form-control" name="comment" [(ngModel)]="coffeecopy2.comment"></textarea>
+                  </div>
                 
               </form>
          

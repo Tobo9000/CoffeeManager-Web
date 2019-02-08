@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit {
     console.log("Suche: "+ this.searchString);
     for(var s=0; s< this.orders.length; s++){
       
-      if(this.searchString === this.suchListe[s].amount.toString() || this.searchString === this.suchListe[s].date.toDateString()){
+      if(this.searchString === this.suchListe[s].amount.toString() || this.searchString === this.suchListe[s].comment || this.searchString === this.suchListe[s].date.toString()){
         this.filteredList.push(this.suchListe[s]);
         console.log("Ausgabe:")
         console.log(this.suchListe[s]);
@@ -50,7 +50,8 @@ export class HomeComponent implements OnInit {
   
   ueberschreiben(){
     this.selectedCoffee2.date = this.coffeecopy2.date;
-    this.selectedCoffee2.amount = this.coffeecopy2.amount;
+    this.selectedCoffee2.amount = this.coffeecopy2.amount;  // TODO: In der Datenbank überschreiben!
+    this.selectedCoffee2.comment = this.coffeecopy2.comment;
   }
   
   loeschen(order: Order){  
