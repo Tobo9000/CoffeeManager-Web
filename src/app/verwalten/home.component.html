@@ -1,0 +1,101 @@
+<div class="container mt-5">
+
+  
+
+    <div class="input-group mb-3">
+        <input (ngModelChange)="resetListe()" type="text" class="form-control" placeholder="Suche..." aria-label="Search" aria-describedby="button-addon2" [(ngModel)]="searchString" id="searchInput">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="button" id="button-addon2" (click)="search()" >Suchen</button>
+        </div>
+      </div>
+
+  
+    
+    <ul *ngIf="searchString===''">
+      <div class="list-group">
+      <li class="list-group-item" *ngFor="let o of orders">
+      <span>ID: {{o._id}} | {{o.lastname}}, {{o.firstname}} - Anzahl: {{o.amount}} </span>
+      <span *ngIf="o.email!==null && o.email!==''">(E-Mail: {{o.email}})</span>
+  
+       <!-- Buttons  -->
+      
+      <div class="btn-group float-right" role="group" aria-label="Basic example">
+
+        <button type="button" class="btn btn-primary float-right px-2" data-toggle="modal" data-target="#changeModal2" (click)="selectCoffeeCopy(o)">
+        Bearbeiten
+        </button>
+        <button type="button" class="btn  btn-danger float-right" (click)="loeschen(o)">Löschen</button>
+                     
+      </div> 
+    </li>  
+      </div>
+    </ul>  
+
+    <ul *ngIf="searchString!==''">
+        <div class="list-group">
+        <li class="list-group-item" *ngFor="let f of filteredList">
+        <span>ID: {{f._id}} | {{f.lastname}}, {{f.firstname}} - Anzahl: {{f.amount}} </span>
+        <span *ngIf="f.email!==null && f.email!==''">(E-Mail: {{f.email}})</span>
+    
+         <!-- Buttons  -->
+        
+        <div class="btn-group float-right" role="group" aria-label="Basic example">
+          <button type="button" class="btn btn-primary float-right px-2" data-toggle="modal" data-target="#changeModal2" (click)="selectCoffeeCopy(f)">
+          Bearbeiten
+          </button>
+
+          <button type="button" class="btn  btn-danger float-right" (click)="loeschen(f)">Löschen</button>
+                       
+        </div> 
+      </li>  
+        </div>
+      </ul>
+
+
+
+
+
+
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="changeModal2"  tabindex="-1" role="dialog" aria-labelledby="changeModal2Title" aria-hidden="true">
+    <div class="modal-dialog " role="document" *ngIf="coffeecopy2">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="changeModal2Title"><i class="material-icons">border_color</i> Bearbeiten</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+              <form  #changeForm="ngForm">
+
+                <div class="form-group">
+                    <label>Name:</label>
+                    <input type="text" class="form-control" name="lastname" [(ngModel)]="coffeecopy2.lastname" pattern="[A-Za-zä-üÄ-Ü-]{1,32}" required minlength="2" maxlength="30">
+                </div>
+                <div class="form-group">
+                    <label>Vorname:</label>  
+                    <input type="text" class="form-control" name="firstname" [(ngModel)]="coffeecopy2.firstname" pattern="[A-Za-zä-üÄ-Ü-]{1,50}" required minlength="2" maxlength="50">
+                </div>
+                <div class="form-group">
+                    <label>Anzahl:</label>
+                    <input type="number" class="form-control" name="amount" [(ngModel)]="coffeecopy2.amount" pattern="[0-9]{1,3}">
+                </div>
+                <div class="form-group">
+                  <label>E-Mail:</label>
+                  <input type="email" class="form-control" name="email" [(ngModel)]="coffeecopy2.email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+                </div>
+                
+              </form>
+         
+        </div>
+        <div class="modal-footer">
+          <button type="button" [disabled]="!changeForm.valid" class="btn btn-primary" data-dismiss="modal" (click)="ueberschreiben()">Änderungen speichern</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Abbrechen</button>  
+        </div>
+      </div>
+    </div>
+  </div>
