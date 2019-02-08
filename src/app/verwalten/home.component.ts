@@ -52,6 +52,12 @@ export class HomeComponent implements OnInit {
     this.selectedCoffee2.date = this.coffeecopy2.date;
     this.selectedCoffee2.amount = this.coffeecopy2.amount;  // TODO: In der Datenbank überschreiben!
     this.selectedCoffee2.comment = this.coffeecopy2.comment;
+
+    this.requestService.post("order/changeOrder", this.coffeecopy2).subscribe(res => {
+      console.log(res);
+    }, error => {
+      console.log(error);
+    })
   }
   
   loeschen(order: Order){  
