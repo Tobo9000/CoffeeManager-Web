@@ -39,6 +39,7 @@ export class AppComponent {
     console.log(userCredentials);
     
     this.requestService.post("user/login", userCredentials).subscribe(res => {
+      this.authService.setSession(res.success.token);
       loginForm.reset();
       console.log(res);
     }, err => {

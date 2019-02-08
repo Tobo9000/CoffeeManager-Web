@@ -26,7 +26,7 @@
                 </div>
 
                 <div class="col-12">
-                  <textarea class="form-control" name="comment" ngModel #comment="ngModel" rows="3" placeholder="Kommentarfeld"></textarea>
+                  <textarea class="form-control" name="comment" ngModel #comment="ngModel" rows="3" placeholder="Kommentarfeld" minlength="2" maxlength="150"></textarea>
                 </div>
                 
             </div>
@@ -94,7 +94,7 @@
                   </div>
                   <div class="form-group">
                     <label>Kommentar:</label>
-                    <textarea type="comment" class="form-control" name="comment" [(ngModel)]="coffeecopy.comment"></textarea>
+                    <textarea type="comment" class="form-control" name="comment" [(ngModel)]="coffeecopy.comment" minlength="2" maxlength="150"></textarea>
                   </div>
                   
                 </form>
